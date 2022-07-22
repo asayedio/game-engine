@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Tests
 {
+    [Trait("Category", "Boss")]
     public class BossEnemyShould
     {
         [Fact]
