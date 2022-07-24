@@ -21,7 +21,19 @@ namespace GameEngine.Tests
         [Theory]
         [MemberData(nameof(InternalHealthDamageTestData.TestData),
             MemberType = typeof(InternalHealthDamageTestData))]
-        public void TakeDamageWithMemberData(int damage, int expectedHealth)
+        public void TakeDamageWithInternalMemberData(int damage, int expectedHealth)
+        {
+            NonPlayerCharacter sut = new NonPlayerCharacter();
+
+            sut.TakeDamage(damage);
+
+            Assert.Equal(expectedHealth, sut.Health);
+        }
+
+        [Theory]
+        [MemberData(nameof(ExternalHealthDamageTestData.TestData),
+            MemberType = typeof(InternalHealthDamageTestData))]
+        public void TakeDamageWithExternalMemberData(int damage, int expectedHealth)
         {
             NonPlayerCharacter sut = new NonPlayerCharacter();
 
