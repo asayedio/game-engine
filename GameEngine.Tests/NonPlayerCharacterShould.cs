@@ -3,7 +3,7 @@ using Xunit;
 namespace GameEngine.Tests
 {
     public class NonPlayerCharacterShould
-    {                
+    {
         [Theory]
         [InlineData(0, 100)]
         [InlineData(1, 99)]
@@ -34,6 +34,17 @@ namespace GameEngine.Tests
         [MemberData(nameof(ExternalHealthDamageTestData.TestData),
             MemberType = typeof(InternalHealthDamageTestData))]
         public void TakeDamageWithExternalMemberData(int damage, int expectedHealth)
+        {
+            NonPlayerCharacter sut = new NonPlayerCharacter();
+
+            sut.TakeDamage(damage);
+
+            Assert.Equal(expectedHealth, sut.Health);
+        }
+
+        [Theory]
+        [HealthDamageDataAttribute]
+        public void TakeDamageWithCustomDataAttribute(int damage, int expectedHealth)
         {
             NonPlayerCharacter sut = new NonPlayerCharacter();
 
